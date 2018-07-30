@@ -5,7 +5,7 @@ import os
 __author__ = 'ananya.h'
 
 
-base_dir = "/data/street2shop"
+base_dir = "/home/300002291/fk-visual-search/data"
 meta_dir = os.path.join(base_dir, "meta", "json")
 image_dir = os.path.join(base_dir, "images")
 structured_dir = os.path.join(base_dir, "structured_images")

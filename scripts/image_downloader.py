@@ -1,10 +1,10 @@
 import os
 import pickle
 import workerpool
-from urlparse import urlparse
+from urllib.parse import urlparse
 import requests
 from PIL import Image
-from StringIO import StringIO
+from io import BytesIO
 import traceback
 
 
@@ -29,12 +29,12 @@ class ParallelImageDownloader(object):
             try:
                 r = requests.get(urlObj.url, timeout=5)
                 if r.status_code == 200:
-                    i = Image.open(StringIO(r.content))
+                    i = Image.open(BytesIO(r.content))
                     i.save(self.destination_path+"/"+urlObj.id+".jpg")
                 else:
                     return [r.status_code,urlObj]
             except:
-                #traceback.print_exc()
+                traceback.print_exc()
                 return [-1,urlObj]
         else:
             return None
@@ -51,8 +51,8 @@ class ParallelImageDownloader(object):
         return errors
 
 if __name__ == "__main__":
-    url_file_path = "/data/street2shop/photos/photos.txt"
-    dst_dir = "/data/street2shop/images/"
+    url_file_path = "../data/photos/photos.txt"
+    dst_dir = "../data/images/"
     images_downloaded = os.listdir(dst_dir)
     ids_downloaded = set([ x.split(".")[0] for x in images_downloaded])
     with open(url_file_path,'r') as urlFile:

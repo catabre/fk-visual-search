@@ -11,7 +11,7 @@ stepsize: 101575
 snapshot: 20315
 snapshot_format: 0
 snapshot_prefix: "snapshots/visnet-s2s/"
-solver_mode: GPU
+solver_mode: CPU
 test_compute_loss: true
 net: "models/visnet/train.prototxt"
 average_loss: 100
